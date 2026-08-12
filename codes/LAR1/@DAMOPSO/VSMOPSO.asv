@@ -1,0 +1,57 @@
+classdef VSMOPSO
+    properties (SetAccess=private)
+        numberOfComponents
+        solutionStruct            % The structure of the solution
+        popStruct                 % the structure of population
+        pop                       % population
+        newPop                    % population after movment
+        rep                       % repository 
+        varSize
+        numberOfObjectives
+        numberOfSolutions         % Number of individuals in the population
+        numberOfIterations        % Number of generations
+        solutionsRank             % solution rank
+        solutionDistance          % the crowding distance of solutions
+        lowerBounds               % Lower Bounds
+        higherBounds              % Higher Bounds
+        nRep            % Repository Size
+        w              % Inertia Weight
+        wdamp         % Intertia Weight Damping Rate
+        c1               % Personal Learning Coefficient
+        c2               % Global Learning Coefficient
+        nGrid            % Number of Grids per Dimension
+        alpha          % Inflation Rate in grid
+        beta             % Leader Selection Pressure
+        gamma            % Deletion Selection Pressure
+        mu             % Mutation Rate
+
+    end
+    methods
+        function vsmopso = VSMOPSO(numberOfSolutions,numberOfIterations,lowerBounds,higherBounds,numberOfComponents,...
+                c1,c2,mu,gamma,beta,alpha,nGrid,nRep,w,wdamp)
+            vsmopso.popStruct = struct('Position',[],'Velocity',[],'Cost',[],'Best',[],'IsDominated',[],'GridIndex',[],'GridSubIndex',[]);
+
+            vsmopso.numberOfComponents = numberOfComponents;
+            vsmopso.numberOfSolutions = numberOfSolutions;
+            vsmopso.numberOfIterations = numberOfIterations;
+            vsmopso.lowerBounds = lowerBounds;
+            vsmopso.higherBounds = higherBounds;
+            vsmopso.varSize=[1,2];
+            %vsmopso.paretoStruct = struct('paretoSet',[],'paretoFront',[],'numberOfSolutions',[]);
+            %vsmopso.globalPareto = vsmopso.paretoStruct;
+            %vsmopso.localPareto = repmat(vsmopso.paretoStruct,numberOfSolutions,1);
+            %vsmopso.iterationPareto = vsmopso.paretoStruct;            
+            vsmopso.c1 = c1;
+            vsmopso.c2 = c2;
+            vsmopso.nRep=nRep;            
+            vsmopso.w=w;              
+            vsmopso.wdamp=wdamp;         
+            vsmopso.nGrid=nGrid;            
+            vsmopso.alpha=alpha;          
+            vsmopso.beta=beta;             
+            vsmopso.gamma=gamma;            
+            vsmopso.mu=mu;
+        end
+        vsmopso = RunAlgorithm(vsmopso,objfun);
+    end
+end

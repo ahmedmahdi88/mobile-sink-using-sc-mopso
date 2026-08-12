@@ -1,0 +1,7 @@
+1- to run SC_MOPSO
+MainFile_Sink_SC
+2- to run MOPSO
+PSO_MainFile_Sink... 
+set mutation probability to zero if you don't want mutation, or keep it if you want mutation
+3- to run NSGA2
+MainFileSinkN2
