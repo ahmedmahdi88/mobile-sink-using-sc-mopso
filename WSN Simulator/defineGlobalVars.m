@@ -1,0 +1,11 @@
+global timeCounter;
+global numberOfGeneratedPuckets;
+global numberOfReceivedPucketsInCH;
+global numberOfReceivedPucketsInRVP;
+global E2EDelay;
+global dataCounter;
+global flags;
+global momentOfStopping;
+global savingTravTimeFlag;
+global TravellingTime;
+global numberOfDroppedPuckets
